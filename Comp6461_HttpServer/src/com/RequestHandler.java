@@ -284,6 +284,14 @@ public class RequestHandler implements Runnable {
 				result= new Gson().toJson(temp);
 				break;
 			case "application/xml":
+				StringBuilder sh=new StringBuilder();
+				sh.append("<Directory>\n");
+				sh.append("<Path>\n"+this.clientURI);
+				sh.append("\n</Path>\n");
+				sh.append("<Content>\n"+responseBody);
+				sh.append("\n</Content>\n");
+				sh.append("</Directory>");
+				result=sh.toString();
 				break;
 			case "text/html":
 				result= handleHtmlResponse();
